@@ -1,0 +1,33 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+# If you want to use GNOME config tools...
+#
+#if test -x /usr/lib/openbox/gnome-settings-daemon >/dev/null; then
+#  /usr/lib/openbox/gnome-settings-daemon &
+#elif which gnome-settings-daemon >/dev/null 2>&1; then
+#  gnome-settings-daemon &
+#fi
+
+# If you want to use XFCE config tools...
+#
+#xfce-mcs-manager &
+setxkbmap latam &
+
+#tint2
+(sleep 2s && tint2) &
+
+#Restaurando imagen de fondo
+nitrogen --restore &
+
+#Conky
+(sleep 3s && conky) &
+
+#Transparencia para conky y otros
+xcompmgr -cfF -t-9 -l-11 -r9 -o.95 -D6 & 
+
+#network-manager-applet
+(sleep 4 && /usr/bin/nm-applet --sm-disable) &
