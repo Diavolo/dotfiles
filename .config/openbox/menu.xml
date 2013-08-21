@@ -356,6 +356,12 @@
       <startupnotify><enabled>yes</enabled></startupnotify>
     </action>
   </item>
+  <item label="Nitrogen">
+    <action name="Execute">
+      <command>nitrogen</command>
+      <startupnotify><enabled>yes</enabled></startupnotify>
+    </action>
+  </item>
   <item label="Manage Cups Printers">
     <action name="Execute">
       <command>xdg-open http://localhost:631/</command>
