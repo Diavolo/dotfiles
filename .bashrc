@@ -32,4 +32,10 @@ fi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 #java dirs
-#export PATH=/opt/BOS-5.8/studio/jre/bin/java:$PATH
+
+#EXCLUIR TODO LO RELACIONADO CON EL COMANDO SSH
+HISTIGNORE='ere*:ssh*'
+
+#EXCLUIR TODO LO RELACIONADO CON EL COMANDO LS
+HISTIGNORE='ere*:ls*'
+
