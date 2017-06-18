@@ -22,9 +22,13 @@ compinit
 # posible color values
 # black or 0    red or 1    green or 2    yellow or 3    blue or 4    magenta or 5    cyan or 6    white or 7
 
-echo -e ""
-/usr/bin/fortune
-echo -e ""
+# http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO-11.html
+# http://tldp.org/HOWTO/Text-Terminal-HOWTO-10.html#term_not_for_emulation
+if [ "$TERM" != "linux" ]; then
+    echo -e ""
+    /usr/games/fortune
+    echo -e ""
+fi
 
 PROMPT='%F{3}[%f%F{2}%n@%m:%f%F{6}%1~%f%F{3}]%f%F{5}$%f $reset_color%f'
 
@@ -38,7 +42,7 @@ zstyle ':vcs_info:git:*' formats '%b'
 
 
 # PATH
-export PATH="/opt/node_modules/bin:$HOME/.composer/vendor/bin:$HOME/.rbenv/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/node_modules/bin:$HOME/.composer/vendor/bin:$HOME/.rbenv/bin:$(ruby -e 'print Gem.user_dir')/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
 
 eval "$(rbenv init -)"
 #eval "$(stack --bash-completion-script stack)"
@@ -52,6 +56,7 @@ export EDITOR="emacs -nw"
 # User specific aliases and functions
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias hugo='~/.bin/hugo'
 
 # Emacs sin GUI
 alias emacs='emacs -nw'
@@ -61,3 +66,7 @@ alias jdev='/opt/Oracle/Middleware/Oracle_Home/jdeveloper/jdev/bin/jdev'
 
 # Limpia archivos via bleachbit
 alias limpiar='sudo bleachbit --clean system.cache system.localizations system.trash system.tmp'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/diavolo/.sdkman"
+[[ -s "/home/diavolo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/diavolo/.sdkman/bin/sdkman-init.sh"
