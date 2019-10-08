@@ -8,7 +8,7 @@
 
 # GIT PROMPT
 # source /usr/share/git/completion/git-prompt.sh
-source /usr/doc/git-2.9.0/contrib/completion/git-prompt.sh
+source /usr/doc/git-2.14.4/contrib/completion/git-prompt.sh
 
 
 # RANDOM FORTUNES
@@ -16,7 +16,7 @@ source /usr/doc/git-2.9.0/contrib/completion/git-prompt.sh
 # http://tldp.org/HOWTO/Text-Terminal-HOWTO-10.html#term_not_for_emulation
 if [ "$TERM" != "linux" ]; then
     echo -e ""
-    /usr/games/fortune
+    /usr/bin/env fortune
     echo -e ""
 fi
 
@@ -38,7 +38,7 @@ fi
 
 
 # PATH
-export PATH="/opt/node_modules/bin:$HOME/.composer/vendor/bin:$HOME/.rbenv/bin:$(ruby -e 'print Gem.user_dir')/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$(ruby -e 'print Gem.user_dir')/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
 
 eval "$(rbenv init -)"
 eval "$(stack --bash-completion-script stack)"
@@ -47,11 +47,16 @@ eval "$(stack --bash-completion-script stack)"
 # EDITOR
 export EDITOR="emacs -nw"
 
+# Color git log
+export LESS=R
+
 
 # ALIAS
 # User specific aliases and functions
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias hugo='~/.bin/hugo'
 
 # Emacs sin GUI
 alias emacs='emacs -nw'
