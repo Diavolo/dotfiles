@@ -11,22 +11,40 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# history like csh
+# https://www.zsh.org/mla/users/1998/msg00227.html
+bindkey "\e[A" history-beginning-search-backward
+bindkey "\e[B" history-beginning-search-forward
 
-# $fg[color]           will set the text color (red, green, blue, etc. - defaults to whatever format set prior to text)
-# %F{color} [...] %f   effectively the same as the previous, but with less typing. Can also prefix F with a number instead
+# $fg[color]           will set the text color (red, green, blue, etc.
+#                      - defaults to whatever format set prior to text)
+# %F{color} [...] %f   effectively the same as the previous, but with
+#                      less typing. Can also prefix F with a number
+#                      instead
 # $fg_no_bold[color]   will set text to non-bold and set the text color
 # $fg_bold[color]      will set the text to bold and set the text color
-# $reset_color         will reset the text color to the default color. Does not reset bold. use %b to reset bold. Saves typing if it's just %f though. 
-# %K{color} [...] %k   will set the background color. Same color as non-bold text color. Prefixing with any single-digit number makes the bg black.
+# $reset_color         will reset the text color to the default color.
+#                      Does not reset bold. use %b to reset bold. Saves
+#                      typing if it's just %f though. 
+# %K{color} [...] %k   will set the background color. Same color as
+#                      non-bold text color. Prefixing with any
+#                      single-digit number makes the bg black.
 
 # posible color values
-# black or 0    red or 1    green or 2    yellow or 3    blue or 4    magenta or 5    cyan or 6    white or 7
+# 0 or black
+# 1 or red
+# 2 or green
+# 3 or yellow
+# 4 or blue
+# 5 or magenta
+# 6 or cyan
+# 7 or white
 
 # http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO-11.html
 # http://tldp.org/HOWTO/Text-Terminal-HOWTO-10.html#term_not_for_emulation
 if [ "$TERM" != "linux" ]; then
     echo -e ""
-    /usr/games/fortune
+    /usr/bin/env fortune
     echo -e ""
 fi
 
@@ -40,16 +58,24 @@ RPROMPT='%F{6}'\$vcs_info_msg_0_'%f$reset_color%f'
 zstyle ':vcs_info:git:*' formats '%b'
 
 
-
 # PATH
-export PATH="/opt/node_modules/bin:$HOME/.composer/vendor/bin:$HOME/.rbenv/bin:$(ruby -e 'print Gem.user_dir')/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+PYENV_ROOT="$HOME/.pyenv"
+export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$PYENV_ROOT/bin:$HOME/.cabal/bin:$HOME/.local/bin:/opt/node_modules/bin:$PATH"
 
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 #eval "$(stack --bash-completion-script stack)"
 
 
 # EDITOR
 export EDITOR="emacs -nw"
+
+# export JAVA_HOME=/usr/bin/java
+export JAVA_HOME=/usr/lib64/zulu-openjdk-lts
+export ANT_HOME=/usr/share/ant
+export MAVEN_HOME=/usr/share/maven
+export M2_HOME=/usr/share/maven
 
 
 # ALIAS
