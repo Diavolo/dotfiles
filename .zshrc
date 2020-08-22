@@ -1,3 +1,20 @@
+#
+#  ██████╗  █████╗ ██╗  ██╗██████╗    ███╗   ██╗███████╗████████╗
+# ██╔════╝ ██╔══██╗██║  ██║██╔══██╗   ████╗  ██║██╔════╝╚══██╔══╝
+# ██║  ███╗███████║███████║██║  ██║   ██╔██╗ ██║█████╗     ██║   
+# ██║   ██║██╔══██║██╔══██║██║  ██║   ██║╚██╗██║██╔══╝     ██║   
+# ╚██████╔╝██║  ██║██║  ██║██████╔╝██╗██║ ╚████║███████╗   ██║   
+#  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
+#   ____  ___  _   _ ____  
+#  / ___|/ _ \| | | |  _ \   zshrc
+# | |  _| |_| | |_| | | | |
+# | |_| |  _  |  _  | |_| |  Gustavo Huarcaya
+#  \____|_| |_|_| |_|____/   https://gahd.net
+#
+# zshrc config
+#
+
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -60,18 +77,18 @@ zstyle ':vcs_info:git:*' formats '%b'
 
 # PATH
 PYENV_ROOT="$HOME/.pyenv"
-export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$PYENV_ROOT/bin:$HOME/.cabal/bin:$HOME/.local/bin:/opt/node_modules/bin:$PATH"
+export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/.jenv/bin:$PATH"
+export PATH="/opt/telegram:/opt/vscodium:/opt/insomnia:/opt/bitwarden:/opt/drawio:/opt/zulip:$PATH"
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-#eval "$(stack --bash-completion-script stack)"
+eval "$(jenv init -)"
 
 
 # EDITOR
 export EDITOR="emacs -nw"
 
-# export JAVA_HOME=/usr/bin/java
 export JAVA_HOME=/usr/lib64/zulu-openjdk-lts
 export ANT_HOME=/usr/share/ant
 export MAVEN_HOME=/usr/share/maven
@@ -82,17 +99,17 @@ export M2_HOME=/usr/share/maven
 # User specific aliases and functions
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias hugo='~/.bin/hugo'
+alias hugo='$HOME/.bin/hugo'
 
 # Emacs sin GUI
 alias emacs='emacs -nw'
 
-# JDeveloper
-alias jdev='/opt/Oracle/Middleware/Oracle_Home/jdeveloper/jdev/bin/jdev'
+# Firefox Developer
+alias firefox_dev='/opt/mozilla-firefox-developer/firefox'
 
-# Limpia archivos via bleachbit
-alias limpiar='sudo bleachbit --clean system.cache system.localizations system.trash system.tmp'
+# Clean files with bleachbit
+alias limpiar='bleachbit --clean system.cache system.localizations system.trash system.tmp'
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/diavolo/.sdkman"
-[[ -s "/home/diavolo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/diavolo/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
