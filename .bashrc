@@ -1,6 +1,18 @@
 #
-# ~/.bashrc
+#  ██████╗  █████╗ ██╗  ██╗██████╗    ███╗   ██╗███████╗████████╗
+# ██╔════╝ ██╔══██╗██║  ██║██╔══██╗   ████╗  ██║██╔════╝╚══██╔══╝
+# ██║  ███╗███████║███████║██║  ██║   ██╔██╗ ██║█████╗     ██║
+# ██║   ██║██╔══██║██╔══██║██║  ██║   ██║╚██╗██║██╔══╝     ██║
+# ╚██████╔╝██║  ██║██║  ██║██████╔╝██╗██║ ╚████║███████╗   ██║
+#  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
 #
+#   ____  ___  _   _ ____
+#  / ___|/ _ \| | | |  _ \   ~/.bashrc config
+# | |  _| |_| | |_| | | | |
+# | |_| |  _  |  _  | |_| |  Gustavo Huarcaya
+#  \____|_| |_|_| |_|____/   https://gahd.net
+#
+
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -8,7 +20,16 @@
 
 # GIT PROMPT
 # source /usr/share/git/completion/git-prompt.sh
-source /usr/doc/git-2.14.4/contrib/completion/git-prompt.sh
+source /usr/doc/git-2.35.3/contrib/completion/git-prompt.sh
+
+# tcsh-like history search
+# https://forums.freebsd.org/threads/emulating-tcsh-history-search-in-bash.35554/
+# https://stackoverflow.com/a/1030206
+if [[ $- == *i* ]]
+then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+fi
 
 
 # RANDOM FORTUNES
@@ -38,14 +59,24 @@ fi
 
 
 # PATH
-export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$(ruby -e 'print Gem.user_dir')/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/node_modules/bin:$HOME/.local/bin:$PATH"
 
-eval "$(rbenv init -)"
-eval "$(stack --bash-completion-script stack)"
+
+# PYENV
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"    # if `pyenv` is not already on PATH
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
 
 # EDITOR
 export EDITOR="emacs -nw"
+
+# export JAVA_HOME=/usr/bin/java
+export JAVA_HOME=/usr/lib64/zulu-openjdk-lts
+export ANT_HOME=/usr/share/ant
+export MAVEN_HOME=/usr/share/maven
+export M2_HOME=/usr/share/maven
 
 # Color git log
 export LESS=R
@@ -58,32 +89,18 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias hugo='~/.bin/hugo'
 
-# Emacs sin GUI
+# Emacs without X
 alias emacs='emacs -nw'
 
 # JDeveloper
 alias jdev='/opt/Oracle/Middleware/Oracle_Home/jdeveloper/jdev/bin/jdev'
 
-# Limpia archivos via bleachbit
+# Clean with bleachbit
 alias limpiar='sudo bleachbit --clean system.cache system.localizations system.trash system.tmp'
 
 
-# EXCLUSIONES DEL HISTORIAL
-# Excluir todo lo relacionado con el comando 'ssh'
+# EXCLUDE HISTORY
+# Exclude all history related to 'ssh' command
 #HISTIGNORE='ere*:ssh*'
-
-# Excluir todo lo relacionado con el comando 'ls'
+# Exclude all history related to 'ls' command
 #HISTIGNORE='ere*:ls*'
-
-
-# IMGUR
-imgur() {
-    for i in "$@"; do
-        curl -# -F "image"=@"$i" -F "key"="4907fcd89e761c6b07eeb8292d5a9b2a" imgur.com/api/upload.xml|\
-            grep -Eo '<[a-z_]+>http[^<]+'|sed 's/^<.\|_./\U&/g;s/_/ /;s/<\(.*\)>/\x1B[0;34m\1:\x1B[0m /'
-    done
-    }
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/diavolo/.sdkman"
-[[ -s "/home/diavolo/.sdkman/bin/sdkman-init.sh" ]] && source "/home/diavolo/.sdkman/bin/sdkman-init.sh"
