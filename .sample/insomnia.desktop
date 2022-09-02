@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Insomnia
+GenericName=Desktop API Design Editor and API Client
+Comment=The Collaborative API Client and Design Tool
+Icon=insomnia
+Exec=/opt/insomnia/Insomnia.Core-2022.5.0.AppImage
+Terminal=false
+Categories=Development;Utility;
+Keywords=insomnia;rest;graphql;api;design;
+StartupWMClass=insomnia
