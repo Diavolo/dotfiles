@@ -1,11 +1,11 @@
 #
 #  ██████╗  █████╗ ██╗  ██╗██████╗    ███╗   ██╗███████╗████████╗
 # ██╔════╝ ██╔══██╗██║  ██║██╔══██╗   ████╗  ██║██╔════╝╚══██╔══╝
-# ██║  ███╗███████║███████║██║  ██║   ██╔██╗ ██║█████╗     ██║   
-# ██║   ██║██╔══██║██╔══██║██║  ██║   ██║╚██╗██║██╔══╝     ██║   
-# ╚██████╔╝██║  ██║██║  ██║██████╔╝██╗██║ ╚████║███████╗   ██║   
-#  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
-#   ____  ___  _   _ ____  
+# ██║  ███╗███████║███████║██║  ██║   ██╔██╗ ██║█████╗     ██║
+# ██║   ██║██╔══██║██╔══██║██║  ██║   ██║╚██╗██║██╔══╝     ██║
+# ╚██████╔╝██║  ██║██║  ██║██████╔╝██╗██║ ╚████║███████╗   ██║
+#  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
+#   ____  ___  _   _ ____
 #  / ___|/ _ \| | | |  _ \   zshrc
 # | |  _| |_| | |_| | | | |
 # | |_| |  _  |  _  | |_| |  Gustavo Huarcaya
@@ -42,7 +42,7 @@ bindkey "\e[B" history-beginning-search-forward
 # $fg_bold[color]      will set the text to bold and set the text color
 # $reset_color         will reset the text color to the default color.
 #                      Does not reset bold. use %b to reset bold. Saves
-#                      typing if it's just %f though. 
+#                      typing if it's just %f though.
 # %K{color} [...] %k   will set the background color. Same color as
 #                      non-bold text color. Prefixing with any
 #                      single-digit number makes the bg black.
@@ -78,9 +78,14 @@ zstyle ':vcs_info:git:*' formats '%b'
 # PATH
 PYENV_ROOT="$HOME/.pyenv"
 export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/.jenv/bin:$PATH"
-export PATH="/opt/telegram:/opt/vscodium:/opt/insomnia:/opt/bitwarden:/opt/drawio:/opt/zulip:$PATH"
+export PATH="/opt/telegram:/opt/insomnia:/opt/bitwarden:/opt/drawio:/opt/zulip:$PATH"
+export PATH="/opt/rider/bin:$PATH"
+export PATH="/opt/rabbitmq-server/sbin:$PATH"
+# export GAHD_DATA_DIR="$HOME/Projects/secrets/gahd.net"
+# export CDEV_DATA_DIR="$HOME/Projects/secrets/continental/developers"
 
 eval "$(rbenv init -)"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(jenv init -)"
@@ -100,16 +105,35 @@ export M2_HOME=/usr/share/maven
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias hugo='$HOME/.bin/hugo'
+alias pnx='pnpm nx --'
 
 # Emacs sin GUI
 alias emacs='emacs -nw'
 
 # Firefox Developer
 alias firefox_dev='/opt/mozilla-firefox-developer/firefox'
+alias firefox_esr='/opt/mozilla-firefox-esr/firefox'
 
 # Clean files with bleachbit
 alias limpiar='bleachbit --clean system.cache system.localizations system.trash system.tmp'
 
+# .NET
+# https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# https://github.com/OmniSharp/omnisharp-roslyn/issues/1394#issuecomment-480792868
+# export MSBuildSDKsPath="/usr/share/dotnet/sdk/$(dotnet --version)/Sdks"
+export PATH="$PATH:/$HOME/.dotnet/tools"
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
