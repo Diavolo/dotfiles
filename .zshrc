@@ -28,6 +28,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+fpath+=~/.zfunc
+
 # history like csh
 # https://www.zsh.org/mla/users/1998/msg00227.html
 bindkey "\e[A" history-beginning-search-backward
@@ -77,42 +79,37 @@ zstyle ':vcs_info:git:*' formats '%b'
 
 # PATH
 PYENV_ROOT="$HOME/.pyenv"
-export PATH="/opt/node_modules/bin:$HOME/.rbenv/bin:$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/.jenv/bin:$PATH"
-export PATH="/opt/telegram:/opt/insomnia:/opt/bitwarden:/opt/drawio:/opt/zulip:$PATH"
+export PATH="/opt/node_modules/bin:$PYENV_ROOT/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/telegram:/opt/insomnia:/opt/bitwarden:/opt/drawio:$PATH"
 export PATH="/opt/rider/bin:$PATH"
-export PATH="/opt/rabbitmq-server/sbin:$PATH"
-# export GAHD_DATA_DIR="$HOME/Projects/secrets/gahd.net"
-# export CDEV_DATA_DIR="$HOME/Projects/secrets/continental/developers"
 
-eval "$(rbenv init -)"
-eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
-eval "$(jenv init -)"
 
 
 # EDITOR
-export EDITOR="emacs -nw"
+#export EDITOR="emacs -nw"
 
-export JAVA_HOME=/usr/lib64/zulu-openjdk-lts
-export ANT_HOME=/usr/share/ant
-export MAVEN_HOME=/usr/share/maven
-export M2_HOME=/usr/share/maven
+#export JAVA_HOME=/usr/lib64/zulu-openjdk-lts
+#export ANT_HOME=/usr/share/ant
+#export MAVEN_HOME=/usr/share/maven
+#export M2_HOME=/usr/share/maven
 
 
 # ALIAS
 # User specific aliases and functions
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias hugo='$HOME/.bin/hugo'
+#alias hugo='$HOME/.bin/hugo'
 alias pnx='pnpm nx --'
 
 # Emacs sin GUI
-alias emacs='emacs -nw'
+# alias emacs='emacs -nw'
 
 # Firefox Developer
-alias firefox_dev='/opt/mozilla-firefox-developer/firefox'
-alias firefox_esr='/opt/mozilla-firefox-esr/firefox'
+#alias firefox_dev='/opt/mozilla-firefox-developer/firefox'
+#alias firefox_esr='/opt/mozilla-firefox-esr/firefox'
 
 # Clean files with bleachbit
 alias limpiar='bleachbit --clean system.cache system.localizations system.trash system.tmp'
@@ -124,16 +121,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # export MSBuildSDKsPath="/usr/share/dotnet/sdk/$(dotnet --version)/Sdks"
 export PATH="$PATH:/$HOME/.dotnet/tools"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Add JBang to environment
-alias j!=jbang
-export PATH="$HOME/.jbang/bin:$PATH"
+# Load Angular CLI autocompletion.
+source <(ng completion script)
