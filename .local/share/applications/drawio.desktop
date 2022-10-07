@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Draw.io
+GenericName=Diagram Software and Flowchart Maker
+Comment=High quality drawing, flowchart and presentation editor
+Icon=drawio
+Exec=/opt/drawio/drawio-x86_64-20.2.3.AppImage
+Terminal=false
+Categories=Development;Graphics;Utility;
+Keywords=draw;diagram;graphic;
+StartupWMClass=drawio
